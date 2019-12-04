@@ -24,9 +24,34 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "src/styles.css",
+              "src/customStyles/plugins/pg-calendar/css/pignose.calendar.min.css",
+              "src/customStyles/plugins/chartist/css/chartist.min.css",
+              "src/customStyles/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css",
+              "src/customStyles/css/style.css"
             ],
-            "scripts": []
+            "scripts": [     
+              "node_modules/jquery/dist/jquery.js",         
+              "node_modules/bootstrap/dist/js/bootstrap.js",
+              "src/customStyles/plugins/common/common.min.js",
+              "src/customStyles/js/custom.min.js",
+              "src/customStyles/js/settings.js",
+              "src/customStyles/js/gleek.js",
+              "src/customStyles/js/styleSwitcher.js",
+              "src/customStyles/plugins/chart.js/Chart.bundle.min.js",
+              "src/customStyles/plugins/circle-progress/circle-progress.min.js",
+              "src/customStyles/plugins/d3v3/index.js",
+              "src/customStyles/plugins/topojson/topojson.min.js",
+              "src/customStyles/plugins/datamaps/datamaps.world.min.js",
+              "src/customStyles/plugins/raphael/raphael.min.js",
+              "src/customStyles/plugins/morris/morris.min.js",
+              "src/customStyles/plugins/moment/moment.min.js",
+              "src/customStyles/plugins/pg-calendar/js/pignose.calendar.min.js",
+              "src/customStyles/plugins/chartist/js/chartist.min.js",
+              "src/customStyles/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js",
+              "src/customStyles/js/dashboard/dashboard-1.js"
+            ]
           },
           "configurations": {
             "production": {
