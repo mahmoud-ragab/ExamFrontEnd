@@ -1,0 +1,66 @@
+
+
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-validation">
+                        <form class="form-valide" [formGroup]="registerModel" (ngSubmit)="submit()">
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="username">Username
+                                </label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="username" formControlName="username">
+                                </div>
+                                <p *ngIf="username.invalid && (username.dirty || isSubmitted)" class="text-danger">required</p>
+                                
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="email">Email 
+                                </label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="email" formControlName="email">
+                                </div>
+                                <p *ngIf="email.invalid && (email.dirty || isSubmitted)" class="text-danger">required</p>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="password">Password 
+                                </label>
+                                <div class="col-lg-6">
+                                    <input type="password" class="form-control" id="password" formControlName="password">
+                                </div>
+                                <p *ngIf="password.invalid && (password.dirty || isSubmitted)" class="text-danger">required</p>
+                            </div>
+                            <!-- <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="confirm-password">Confirm Password 
+                                </label>
+                                <div class="col-lg-6">
+                                    <input type="password" class="form-control" id="confirm-password" formControlName="confirmPassword">
+                                </div>
+                            </div> -->
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="type">Student/Instructor 
+                                </label>
+                                <div class="col-lg-6">
+                                    <select class="form-control" id="type" formControlName="type">
+                                        <option value="1">Student</option>
+                                        <option value="2">Instructor</option>
+                                    </select>
+                                </div>
+                                <p *ngIf="type.invalid && (type.dirty || isSubmitted)" class="text-danger">required</p>
+                            </div>
+                            
+                            <div class="form-group row">
+                                <div class="col-lg-8 ml-auto">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

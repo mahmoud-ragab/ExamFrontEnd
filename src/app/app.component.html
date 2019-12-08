@@ -1,5 +1,3 @@
-<body data-theme-version="light" data-layout="vertical" data-nav-headerbg="color_1" data-headerbg="color_1" data-sidebar-style="full" data-sibebarbg="color_1" data-sidebar-position="static" data-header-position="static" data-container="wide" direction="ltr">
-
     <!--*******************
         Preloader start
     ********************-->
@@ -14,30 +12,15 @@
         Preloader end
     ********************-->
 
-    
+
     <!--**********************************
         Main wrapper start
     ***********************************-->
     <div id="main-wrapper" class="show">
-
-        <!--**********************************
-            Nav header start
-        ***********************************-->
-        <div class="nav-header">
-            <div class="brand-logo">
-                
-            </div>
-        </div>
-        <!--**********************************
-            Nav header end
-        ***********************************-->
-
         <!--**********************************
             Header start
         ***********************************-->
-        <div class="header">    
-            
-        </div>
+        <app-header [isLoggedIn]="isLoggedIn"></app-header>
         <!--**********************************
             Header end ti-comment-alt
         ***********************************-->
@@ -45,9 +28,7 @@
         <!--**********************************
             Sidebar start
         ***********************************-->
-        <div class="nk-sidebar">           
-            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"></div>
-        </div>
+        <app-sidebar [isLoggedIn]="isLoggedIn" [userType]="userType"></app-sidebar>
         <!--**********************************
             Sidebar end
         ***********************************-->
@@ -56,25 +37,17 @@
             Content body start
         ***********************************-->
         <div class="content-body" style="min-height: 884px;">
-
-            
-            <!-- #/ container -->
+            <router-outlet></router-outlet>
         </div>
         <!--**********************************
             Content body end
         ***********************************-->
-        
-        
+
+
         <!--**********************************
             Footer start
         ***********************************-->
-        <div class="footer">
-            <div class="copyright">
-                
-            </div>
-        </div>
+        <app-footer></app-footer>
         <!--**********************************
             Footer end
         ***********************************-->
-    </div>
-
