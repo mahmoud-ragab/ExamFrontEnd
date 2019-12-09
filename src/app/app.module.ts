@@ -18,19 +18,21 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './core/auth.intercceptor';
 import { InstuctorGuard } from './core/guards/instuctor.guard';
 import { StudentGuard } from './core/guards/student.guard';
+import { InstructorComponent } from './components/instructor/instructor.component';
 
 const routes = [
+  {path:'instructor/:id',component:InstructorComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'user/sign-in', component: SignInComponent },
   { path: 'user/sign-up', component: SignUpComponent },
   { path: 'user/logout', component: LogoutComponent },
-  { path: '**', redirectTo: 'home' }
-]
+  { path: '**', redirectTo: 'home' }]
 
 @NgModule({
   declarations: [
     AppComponent,
+    InstructorComponent,
     HeaderComponent,
     SidebarComponent,
     FooterComponent,
