@@ -11801,7 +11801,7 @@ table.dataTable thead .sorting::after {
   margin-bottom: 0 !important; }
 
 .comming-soon-wrapper {
-  background:black;
+  /* background-image: url("../images/big/comming-soon-bg.png"); */
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;

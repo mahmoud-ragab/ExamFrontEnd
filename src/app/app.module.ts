@@ -3,20 +3,21 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router'
+import { InstructorComponent } from './components/instructor/instructor.component';
 
 const routes = [
-  {path:'',component:AppComponent},
+  {path:'instructor/:id',component:InstructorComponent},
+  {path:'',component:AppComponent}
 ]
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    InstructorComponent 
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([
-
-    ])
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
