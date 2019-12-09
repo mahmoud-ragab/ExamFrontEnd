@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
+
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
@@ -19,15 +21,23 @@ import { TokenInterceptor } from './core/auth.intercceptor';
 import { InstuctorGuard } from './core/guards/instuctor.guard';
 import { StudentGuard } from './core/guards/student.guard';
 import { InstructorComponent } from './components/instructor/instructor.component';
+import { SolvedExamsComponent } from './solved-exams/solved-exams.component';
+import { UnSolvedExamsComponent } from './un-solved-exams/un-solved-exams.component';
+import { SavedexamsComponent } from './savedexams/savedexams.component'
+import { ExamservicesService } from './examservices.service';
 
 const routes = [
-  {path:'instructor/:id',component:InstructorComponent},
+  { path: 'instructor/:id', component: InstructorComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'user/sign-in', component: SignInComponent },
   { path: 'user/sign-up', component: SignUpComponent },
   { path: 'user/logout', component: LogoutComponent },
+  { path: 'solved', component: SolvedExamsComponent },
+  { path: 'notsolved', component: UnSolvedExamsComponent },
+  { path: 'SolveExam/:id', component: SolvedExamsComponent },
   { path: '**', redirectTo: 'home' }]
+
 
 @NgModule({
   declarations: [
@@ -39,13 +49,17 @@ const routes = [
     SignInComponent,
     SignUpComponent,
     HomeComponent,
-    LogoutComponent
+    LogoutComponent,    
+    SolvedExamsComponent,
+    UnSolvedExamsComponent,
+    SavedexamsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    HttpModule,
     RouterModule.forRoot(routes)
   ],
   providers: [FormsModule,
@@ -58,7 +72,8 @@ const routes = [
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }
+    },
+    ExamservicesService
   ],
   bootstrap: [AppComponent]
 })
