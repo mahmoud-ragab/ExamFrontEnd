@@ -1,0 +1,55 @@
+ 
+
+.content-body{
+    width: 100%;
+}
+
+#PageContent{
+    margin: 10px;
+    
+}
+
+#CourseName{
+    width: 110px;
+    font-size: 13px;
+    text-align: center;
+}
+
+.TableBody{
+    text-align: center;
+   font-size: 15px;
+}
+
+.TableHead{
+    text-align: center;
+    font-size: 16px;
+    
+ }
+
+#ID1
+ {
+     width: 30%;
+
+ }
+ #ID2
+ {
+     width: 20%;
+ }
+
+ .form-inline{
+     
+    margin: auto;
+    width: 30%;
+   
+    text-align: center;
+}
+
+#dashboard1
+{
+    margin: 12px;
+}
+
+ 
+
+
+ 
