@@ -58,6 +58,7 @@ export class SignUpComponent implements OnInit {
       this.authService.register(requestModel)
         .subscribe((response) => {
           this.localStorageService.setItem('UserInfo', JSON.stringify({
+            Id: response['Id'],
             UserName: response['UserName'],
             Email: response['Email'],
             Type: response['Type']
