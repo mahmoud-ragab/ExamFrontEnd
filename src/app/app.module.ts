@@ -14,7 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { LocalStorageService } from './core/local-storage.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './core/auth.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpResponse } from '@angular/common/http';
 import { LogoutComponent } from './user/logout/logout.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './core/auth.intercceptor';
@@ -26,6 +26,8 @@ import { UnSolvedExamsComponent } from './un-solved-exams/un-solved-exams.compon
 import { SavedexamsComponent } from './savedexams/savedexams.component'
 import { ExamservicesService } from './examservices.service';
 import { LookupService } from './core/lookup.service';
+import { AuthGuard } from './core/guards/auth.guard';
+ 
 
 const routes = [
   { path: 'instructor/:id', component: InstructorComponent },
@@ -34,9 +36,12 @@ const routes = [
   { path: 'user/sign-in', component: SignInComponent },
   { path: 'user/sign-up', component: SignUpComponent },
   { path: 'user/logout', component: LogoutComponent },
-  { path: 'solved', component: SolvedExamsComponent },
-  { path: 'notsolved', component: UnSolvedExamsComponent },
-  { path: 'SolveExam/:id', component: SolvedExamsComponent },
+  { path: 'solved', component: SolvedExamsComponent , canActivate:[AuthGuard, StudentGuard]},
+  { path: 'notsolved', component: UnSolvedExamsComponent, canActivate:[AuthGuard, StudentGuard] },
+ 
+
+  
+ // { path: 'SolveExam/:id', component: SolvedExamsComponent },
   { path: '**', redirectTo: 'home' }]
 
 
@@ -54,6 +59,7 @@ const routes = [
     SolvedExamsComponent,
     UnSolvedExamsComponent,
     SavedexamsComponent
+
   ],
   imports: [
     BrowserModule,

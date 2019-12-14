@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ExamservicesService } from '../examservices.service';
 import { exams } from '../exams';
 import { Router } from '@angular/router';
+import { LocalStorageService } from '../core/local-storage.service';
  
 
 @Component({
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class UnSolvedExamsComponent implements OnInit {
 
-  constructor(public serv:ExamservicesService,private r:Router) { }
+  constructor(public serv:ExamservicesService,private r:Router,public localService:LocalStorageService) { }
  
   ngOnInit() {
 this.solvedExams();
@@ -25,7 +26,7 @@ countNotSolved:number;
 
   solvedExams()
   {
-    this.serv.GetNotSolvedExams(1).subscribe(
+    this.serv.GetNotSolvedExams(JSON.parse(this.localService.getItem('UserInfo'))['Id']).subscribe(
       
         data=>{this.arr = data.json()}
     )
@@ -34,7 +35,7 @@ countNotSolved:number;
 
   CountsolvedExams()
   {
-    this.serv.GetCountSolvedExams(1).subscribe(
+    this.serv.GetCountSolvedExams(JSON.parse(this.localService.getItem('UserInfo'))['Id']).subscribe(
       
         data=>{this.countSolved = data.json()}
     )
@@ -43,11 +44,31 @@ countNotSolved:number;
 
     CountNotsolvedExams()
     {
-      this.serv.GetCountSolvedExams(1).subscribe(
+      this.serv.GetCountNotSolvedExams(JSON.parse(this.localService.getItem('UserInfo'))['Id']).subscribe(
         
           data=>{this.countNotSolved = data.json()}
       )
       }
+
+
+
+
+      Course:string;
+
+
+      search() {
+       if (this.Course.trim())
+        {
+    
+          this.arr =  this.arr.filter(
+            res=>{ return  res.Course.toLowerCase().match(this.Course.toLowerCase()); } );
+        }
+
+        else  
+        this.solvedExams();
+        }
+
+
 
       GOToExam( id:number){
         this.r.navigate(['/SolveExam/'+id])

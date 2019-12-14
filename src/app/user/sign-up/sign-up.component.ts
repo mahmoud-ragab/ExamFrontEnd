@@ -73,6 +73,7 @@ export class SignUpComponent implements OnInit {
         .subscribe((response) => {
           debugger;
           this.localStorageService.setItem('UserInfo', JSON.stringify({
+            Id: response['Id'],
             UserName: response['UserName'],
             Email: response['Email'],
             Type: response['Type'],

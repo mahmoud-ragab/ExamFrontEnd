@@ -1,4 +1,5 @@
  
+ 
 
        
         <!-- row -->
@@ -46,13 +47,14 @@
 
 
                             <div role="toolbar" class="toolbar">
-                                    <form class="form-inline ml-auto">
-                                            <div class="md-form my-0">
-                                              <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-                                            </div>
-                                            <button href="#" class="btn btn-outline-info btn-md my-0 ml-sm-2" type="submit">Search</button>
-                                          </form>
-                                </div>
+                                <form #frmRef="ngForm" class="form-inline ml-auto">
+                                        <div class="md-form my-0">
+                                           
+                                          <input type="text" aria-label="Search" class="form-control" ngModel name="CourseName" [(ngModel)]="Course" placeholder="Course Name"   (input) ="search()">
+                                        </div>
+                                       
+                                      </form>
+                            </div>
                             <div class="email-right-box">
                                 
                                 
@@ -84,9 +86,9 @@
                                                                 <tr class="TableBody" *ngFor="let item of arr">
                                                                     <th>{{item.ExamID}}</th>
                                                                     <td>{{item.Instructor}}</td>
+                                                                    <td><span  id="CourseName" class="badge badge-info px-2">{{item.Topic}}</span></td>
                                                                    
-                                                                    <td>{{item.Topic}}</td>
-                                                                    <td><span  id="CourseName" class="badge badge-info px-2">{{item.Course}}</span></td>
+                                                                    <td>{{item.Course}}</td>
                                                                 
     
                                                                     <td> <button type="button" (click)="GOToExam(item.ExamID)" [routerLink]="['/SolveExam',item.ExamID]" class="btn btn-success">Solve</button>  </td>
