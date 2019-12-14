@@ -45,7 +45,8 @@ export class SignInComponent implements OnInit {
           this.localStorageService.setItem('UserInfo', JSON.stringify({
             UserName: response['UserName'],
             Email: response['Email'],
-            Type: response['Type']
+            Type: response['Type'],
+            DepartmentId: response['DepartmentId']
           }));
           this.localStorageService.setToken(response['Token']);
           this.router.navigate(['/home']);

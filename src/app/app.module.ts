@@ -25,6 +25,7 @@ import { SolvedExamsComponent } from './solved-exams/solved-exams.component';
 import { UnSolvedExamsComponent } from './un-solved-exams/un-solved-exams.component';
 import { SavedexamsComponent } from './savedexams/savedexams.component'
 import { ExamservicesService } from './examservices.service';
+import { LookupService } from './core/lookup.service';
 
 const routes = [
   { path: 'instructor/:id', component: InstructorComponent },
@@ -73,7 +74,8 @@ const routes = [
       useClass: TokenInterceptor,
       multi: true
     },
-    ExamservicesService
+    ExamservicesService,
+    LookupService
   ],
   bootstrap: [AppComponent]
 })

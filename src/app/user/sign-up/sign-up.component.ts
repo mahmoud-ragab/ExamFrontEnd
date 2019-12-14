@@ -4,6 +4,7 @@ import { AuthService } from '../../core/auth.service'
 import { LocalStorageService } from 'src/app/core/local-storage.service';
 import { Router } from '@angular/router';
 import { EventEmitter } from 'events';
+import { LookupService } from 'src/app/core/lookup.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -11,24 +12,33 @@ import { EventEmitter } from 'events';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
+  departmentLookup: any;
+
   isSubmitted: boolean;
   registerModel = new FormGroup({
     username: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
     // confirmPassword: new FormControl(),
-    type: new FormControl('', Validators.required)
+    type: new FormControl('', Validators.required),
+    department: new FormControl('', Validators.required)
   });
 
   constructor(private authService: AuthService,
     private localStorageService: LocalStorageService,
-    private router: Router) {
+    private router: Router,
+    private lookupService: LookupService) {
     this.isSubmitted = false;
-    if (this.authService.isLoggedIn())
-      router.navigate(['/home']);
   }
 
   ngOnInit() {
+    if (this.authService.isLoggedIn())
+      this.router.navigate(['/home']);
+
+    this.lookupService.getDepartments()
+      .subscribe((response) => {
+        this.departmentLookup = response;
+      });
   }
 
   get username() {
@@ -46,6 +56,9 @@ export class SignUpComponent implements OnInit {
   get type() {
     return this.registerModel.get('type');
   }
+  get department(){
+    return this.registerModel.get('department');
+  }
 
   submit(): void {
     if (this.registerModel.valid) {
@@ -53,14 +66,17 @@ export class SignUpComponent implements OnInit {
         UserName: this.username.value,
         Email: this.email.value,
         Password: this.password.value,
-        Type: this.type.value
+        Type: this.type.value,
+        DepartmentId: this.department.value
       }
       this.authService.register(requestModel)
         .subscribe((response) => {
+          debugger;
           this.localStorageService.setItem('UserInfo', JSON.stringify({
             UserName: response['UserName'],
             Email: response['Email'],
-            Type: response['Type']
+            Type: response['Type'],
+            DepartmentId: this.department.value
           }));
           this.localStorageService.setToken(response['Token']);
           this.router.navigate(['/home']);
