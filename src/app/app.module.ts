@@ -25,7 +25,8 @@ import { SolvedExamsComponent } from './solved-exams/solved-exams.component';
 import { UnSolvedExamsComponent } from './un-solved-exams/un-solved-exams.component';
 import { SavedexamsComponent } from './savedexams/savedexams.component'
 import { ExamservicesService } from './examservices.service';
-
+import { GenerateExamComponent } from './generate-exam/generate-exam.component';
+import {GenerateExamServiceService} from './core/generate-exam-service.service';
 const routes = [
   { path: 'instructor/:id', component: InstructorComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -36,6 +37,7 @@ const routes = [
   { path: 'solved', component: SolvedExamsComponent },
   { path: 'notsolved', component: UnSolvedExamsComponent },
   { path: 'SolveExam/:id', component: SolvedExamsComponent },
+  { path: 'generate-exam', component: GenerateExamComponent },
   { path: '**', redirectTo: 'home' }]
 
 
@@ -49,10 +51,11 @@ const routes = [
     SignInComponent,
     SignUpComponent,
     HomeComponent,
-    LogoutComponent,    
+    LogoutComponent,
     SolvedExamsComponent,
     UnSolvedExamsComponent,
-    SavedexamsComponent
+    SavedexamsComponent,
+    GenerateExamComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +76,8 @@ const routes = [
       useClass: TokenInterceptor,
       multi: true
     },
-    ExamservicesService
+    ExamservicesService,
+    GenerateExamServiceService
   ],
   bootstrap: [AppComponent]
 })
