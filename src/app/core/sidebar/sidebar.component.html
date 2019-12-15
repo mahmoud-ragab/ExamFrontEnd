@@ -1,0 +1,28 @@
+<div class="nk-sidebar">
+    <ul class="metismenu" id="menu" *ngIf="isLoggedIn">
+        <div *ngIf="userType == 1">
+            <li class="nav-label">Student</li>
+            <li>
+                <a [routerLink]="['/solved']" aria-expanded="false">
+                    <i class="icon-grid"></i><span class="nav-text">List of Exams</span>
+                </a>
+            </li>
+        </div>
+        <div *ngIf="userType == 2">
+            <li class="nav-label">Instructor</li>
+            <li>
+                <a [routerLink]="['']" aria-expanded="false">
+                    <i class="icon-grid"></i><span class="nav-text">Generate Exam</span>
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="['']" aria-expanded="false">
+                    <i class="icon-grid"></i><span class="nav-text">List of Exams</span>
+                </a>
+            </li>
+        </div>
+    </ul>
+    <ul class="metismenu" id="menu">
+        <li class="nav-label" *ngIf="!isLoggedIn">You're not authorized.</li>
+    </ul>
+</div>
