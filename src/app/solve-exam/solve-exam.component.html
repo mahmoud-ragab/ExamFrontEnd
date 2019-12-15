@@ -1,0 +1,22 @@
+
+<div class="alert alert-primary m-4 text-muted font-weight-bold" role="alert" *ngFor="let Ques of Questions; let i=index">
+{{Ques}}
+<br>
+
+<div class="radio" class="mt-2 alert alert-success text-muted">
+    <label><input   type="radio" [name]="i" value=1 checked (change)="ChangeOption(i,1)"> {{MultipleChoices[i*4]}}</label>
+</div>
+<div class="radio" class="mt-2 alert alert-success text-muted">
+    <label><input  type="radio" [name]="i" value=2 (change)="ChangeOption(i,2)" >  {{MultipleChoices[i*4 +1]}}</label>
+</div>
+<div class="radio" class="mt-2 alert alert-success text-muted">
+    <label><input  type="radio" [name]="i" value=3 (change)="ChangeOption(i,3)" > {{MultipleChoices[i*4 +2]}}</label>
+</div>
+
+<div class="radio" class="mt-2 alert alert-success text-muted">
+    <label><input  type="radio" [name]="i" value=4 (change)="ChangeOption(i,4)"> {{MultipleChoices[i*4 +3]}}</label>
+</div>
+      
+</div>
+
+<button type="button" class="btn btn-primary ml-5" (click)="Submit()">Submit</button>
