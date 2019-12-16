@@ -5,6 +5,7 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 })
 export class LocalStorageService {
   @Output() onItemChanged = new EventEmitter();
+  @Output() onay7aga = new EventEmitter();
 
   constructor() { }
 
@@ -13,6 +14,7 @@ export class LocalStorageService {
   }
   setItem(key: string, value: any): void{
     localStorage.setItem(key, value);
+    this.onay7aga.emit();
   }
   setToken(value: any): void{
     localStorage.setItem('Token', value);

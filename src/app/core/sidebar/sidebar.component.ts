@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { LocalStorageService } from '../local-storage.service';
+import { userInfo } from 'os';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,10 +15,16 @@ export class SidebarComponent implements OnInit {
   userId;
 
   constructor(private localStorageService: LocalStorageService) {
-    this.userId = JSON.parse(localStorageService.getItem('UserInfo')).Id;
-   }
+    debugger;
+    let userinfo = localStorageService.getItem('UserInfo');
+    if (userInfo)
+      this.userId = JSON.parse(userinfo).Id;
+  }
 
   ngOnInit() {
+    this.localStorageService.onay7aga.subscribe(item => {
+      this.userId = JSON.parse(this.localStorageService.getItem('UserInfo')).Id;
+    });
   }
 
 }
