@@ -29,6 +29,8 @@ import { LookupService } from './core/lookup.service';
 import { AuthGuard } from './core/guards/auth.guard';
  
 
+import { GenerateExamComponent } from './generate-exam/generate-exam.component';
+import {GenerateExamServiceService} from './core/generate-exam-service.service';
 const routes = [
   { path: 'instructor/:id', component: InstructorComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -38,10 +40,8 @@ const routes = [
   { path: 'user/logout', component: LogoutComponent },
   { path: 'solved', component: SolvedExamsComponent , canActivate:[AuthGuard, StudentGuard]},
   { path: 'notsolved', component: UnSolvedExamsComponent, canActivate:[AuthGuard, StudentGuard] },
- 
-
-  
- // { path: 'SolveExam/:id', component: SolvedExamsComponent },
+  { path: 'SolveExam/:id', component: SolvedExamsComponent },
+  { path: 'generate-exam', component: GenerateExamComponent },
   { path: '**', redirectTo: 'home' }]
 
 
@@ -55,11 +55,12 @@ const routes = [
     SignInComponent,
     SignUpComponent,
     HomeComponent,
-    LogoutComponent,    
+    LogoutComponent,
     SolvedExamsComponent,
     UnSolvedExamsComponent,
-    SavedexamsComponent
-
+    SavedexamsComponent,
+    SavedexamsComponent,
+    GenerateExamComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +82,8 @@ const routes = [
       multi: true
     },
     ExamservicesService,
-    LookupService
+    LookupService,
+    GenerateExamServiceService
   ],
   bootstrap: [AppComponent]
 })
