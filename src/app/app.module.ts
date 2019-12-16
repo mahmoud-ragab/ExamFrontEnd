@@ -38,10 +38,7 @@ const routes = [
   { path: 'user/logout', component: LogoutComponent },
   { path: 'solved', component: SolvedExamsComponent , canActivate:[AuthGuard, StudentGuard]},
   { path: 'notsolved', component: UnSolvedExamsComponent, canActivate:[AuthGuard, StudentGuard] },
- 
-
-  
- // { path: 'SolveExam/:id', component: SolvedExamsComponent },
+ { path: 'solveexam/:id', component: SolveExamComponent},
   { path: '**', redirectTo: 'home' }]
 
 
