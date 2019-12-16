@@ -25,7 +25,9 @@ export class StudentmodelanswerComponent implements OnInit {
       this.parameter.id,this.parameter.cid,
       this.parameter.e_id, this.parameter.s_id)
       .subscribe(data => {
+        console.log(data)
         this.modelanswer = data;
+        debugger;
       })
   }
 
