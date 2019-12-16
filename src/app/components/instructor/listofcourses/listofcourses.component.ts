@@ -26,13 +26,13 @@ export class ListofcoursesComponent implements OnInit {
   getCourses() {
     this.api.getInstructorCourseList(this.pr.id)
       .subscribe(data => {
+        console.log(data)
         this.courses = data;
       });
   }
   getCourseExams(cid) {
-    //debugger;
+    debugger;
     this.router.navigate([`instructor/${this.pr.id}/course/${cid}/exams`])
-    ///instructor/1/course/(cid)/exams
-    //instructor/1?courseId=1
+  
   }
 }
