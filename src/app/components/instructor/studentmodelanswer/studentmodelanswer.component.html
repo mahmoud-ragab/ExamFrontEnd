@@ -1,1 +1,12 @@
-<p>studentmodelanswer works!</p>
+<div class="alert alert-primary m-4 text-muted font-weight-bold" role="alert" *ngFor="let Q of modelanswer">
+    {{Q.Questions.questionContent}}
+    <br>
+
+    <div [ngClass]="(5 == 5)?'alert-success':'alert-danger'"
+        class="mt-2 text-muted">
+        <label>
+            {{Q.selectedAnswer.asnwerContent}}
+        </label>
+    </div>
+
+</div>
