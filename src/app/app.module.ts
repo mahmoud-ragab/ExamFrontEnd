@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
+
+
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './core/header/header.component';
@@ -11,7 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { LocalStorageService } from './core/local-storage.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './core/auth.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpResponse } from '@angular/common/http';
 import { LogoutComponent } from './user/logout/logout.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './core/auth.intercceptor';
@@ -21,18 +24,32 @@ import { InstructorComponent } from './components/instructor/instructor.componen
 import { ListofcoursesComponent } from './components/instructor/listofcourses/listofcourses.component';
 import { ListofexamsComponent } from './components/instructor/listofexams/listofexams.component';
 import { StudentmodelanswerComponent } from './components/instructor/studentmodelanswer/studentmodelanswer.component';
+import { SolvedExamsComponent } from './solved-exams/solved-exams.component';
+import { UnSolvedExamsComponent } from './un-solved-exams/un-solved-exams.component';
+import { SavedexamsComponent } from './savedexams/savedexams.component'
+import { ExamservicesService } from './examservices.service';
+import { LookupService } from './core/lookup.service';
+import { AuthGuard } from './core/guards/auth.guard';
+ 
 
+import { GenerateExamComponent } from './generate-exam/generate-exam.component';
+import {GenerateExamServiceService} from './core/generate-exam-service.service';
 const routes = [
   { path: 'instructor/:id/:c_id/:s_id/:e_id/modelanswer', component: StudentmodelanswerComponent },
   { path: 'instructor/:id/:c_id/exams', component: ListofexamsComponent },
   { path: 'instructor/:id/courses', component: ListofcoursesComponent },
   { path: 'instructor/:id', component: InstructorComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'user/sign-in', component: SignInComponent },
   { path: 'user/sign-up', component: SignUpComponent },
   { path: 'user/logout', component: LogoutComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'solved', component: SolvedExamsComponent , canActivate:[AuthGuard, StudentGuard]},
+  { path: 'notsolved', component: UnSolvedExamsComponent, canActivate:[AuthGuard, StudentGuard] },
+  { path: 'SolveExam/:id', component: SolvedExamsComponent },
+  { path: 'generate-exam', component: GenerateExamComponent },
   { path: '**', redirectTo: 'home' }]
+
 
 @NgModule({
   declarations: [
@@ -47,13 +64,19 @@ const routes = [
     SignInComponent,
     SignUpComponent,
     HomeComponent,
-    LogoutComponent
+    LogoutComponent,
+    SolvedExamsComponent,
+    UnSolvedExamsComponent,
+    SavedexamsComponent,
+    SavedexamsComponent,
+    GenerateExamComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    HttpModule,
     RouterModule.forRoot(routes)
   ],
   providers: [FormsModule,
@@ -66,7 +89,10 @@ const routes = [
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }
+    },
+    ExamservicesService,
+    LookupService,
+    GenerateExamServiceService
   ],
   bootstrap: [AppComponent]
 })

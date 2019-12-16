@@ -43,9 +43,11 @@ export class SignInComponent implements OnInit {
       .subscribe((response) => {
         if (response) {
           this.localStorageService.setItem('UserInfo', JSON.stringify({
+            Id: response['Id'],
             UserName: response['UserName'],
             Email: response['Email'],
-            Type: response['Type']
+            Type: response['Type'],
+            DepartmentId: response['DepartmentId']
           }));
           this.localStorageService.setToken(response['Token']);
           if(response['Type'] == 1)

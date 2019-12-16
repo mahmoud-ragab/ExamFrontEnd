@@ -1,0 +1,64 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <form action="#" id="step-form-horizontal" class="step-form-horizontal">
+                <div role="application" class="wizard clearfix" id="steps-uid-0">
+                    <div class="steps clearfix">
+                    </div>
+                    <div class="content clearfix">
+                        <section id="steps-uid-0-p-0" role="tabpanel" aria-labelledby="steps-uid-0-h-0"
+                            class="body current" aria-hidden="false">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <input [(ngModel)]="numberOfMcq" type="number" name="numberOfMCQ"
+                                            class="form-control" placeholder="Number Of MCQ" required="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <input [(ngModel)]="numberOfTrueOrFalse" type="number" name="numberOfTrue_False"
+                                            class="form-control" placeholder="Number Of True Or False" required="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <select class="form-control" (change)="fitchCourse($event.target.value)">
+                                        <option>Select Course</option>
+                                        <option value="1">HTML</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <input type="number" name="confirmPassword" class="form-control" disabled
+                                            value="1" required="">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <button (click)="submitData()" type="button" class="btn mb-1 btn-success">Generate
+                                Exam</button>
+                        </section>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div style="margin-top: 3%;" *ngIf="questionsReturned[0]?.Id == -1" class="alert alert-danger">Cannot Generarte Exam !!</div>
+    <table style="margin-top: 3%;" *ngIf="questionsReturned[0]?.Id != -1" class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Content</th>
+                <th scope="col">Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let q of questionsReturned">
+                <th scope="row">{{q.Id}}</th>
+                <td>{{q.Content}}</td>
+                <td>{{q.questionType}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
