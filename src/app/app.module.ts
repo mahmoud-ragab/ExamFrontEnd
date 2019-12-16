@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-
-
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './core/header/header.component';
@@ -30,13 +28,11 @@ import { SavedexamsComponent } from './savedexams/savedexams.component'
 import { ExamservicesService } from './examservices.service';
 import { LookupService } from './core/lookup.service';
 import { AuthGuard } from './core/guards/auth.guard';
- 
-
 import { GenerateExamComponent } from './generate-exam/generate-exam.component';
 import {GenerateExamServiceService} from './core/generate-exam-service.service';
 const routes = [
-  { path: 'instructor/:id/:c_id/:s_id/:e_id/modelanswer', component: StudentmodelanswerComponent },
-  { path: 'instructor/:id/:c_id/exams', component: ListofexamsComponent },
+  { path: 'instructor/:id/course/:c_id/exam/:e_id/student/:s_id/modelanswer', component: StudentmodelanswerComponent },
+  { path: 'instructor/:id/course/:c_id/exams', component: ListofexamsComponent },
   { path: 'instructor/:id/courses', component: ListofcoursesComponent },
   { path: 'instructor/:id', component: InstructorComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },

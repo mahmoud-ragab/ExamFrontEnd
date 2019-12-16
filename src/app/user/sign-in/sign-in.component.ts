@@ -20,9 +20,9 @@ export class SignInComponent implements OnInit {
   constructor(private authService: AuthService,
     private localStorageService: LocalStorageService,
     private router: Router) {
-      if(this.authService.isLoggedIn())
-        router.navigate(['/home']);
-     }
+    if (this.authService.isLoggedIn())
+      router.navigate(['/home']);
+  }
 
   ngOnInit() {
   }
@@ -50,11 +50,11 @@ export class SignInComponent implements OnInit {
             DepartmentId: response['DepartmentId']
           }));
           this.localStorageService.setToken(response['Token']);
-          if(response['Type'] == 1)
-          this.router.navigate(['/home']);
-          else if(response['Type'] == 2)
-          this.router.navigate(['/instructor']);
-        }else{
+          if (response['Type'] == 1)
+            this.router.navigate(['/home']);
+          else if (response['Type'] == 2)
+            this.router.navigate([`instructor/${response['Id']}`])
+        } else {
           this.loginModel.setErrors({
             invalidCred: true
           })

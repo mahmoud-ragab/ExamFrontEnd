@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../api/api.service'
-import {Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -11,28 +11,27 @@ import {Router} from '@angular/router';
 export class ListofcoursesComponent implements OnInit {
 
   courses: any = []
-  constructor(private api: ApiService,private router: Router) { }
+  pr;
+  constructor(private api: ApiService, private router: Router,
+    private route: ActivatedRoute,
+  ) {
+    this.route.params.subscribe((p) => {
+      this.pr = p
+    })
+  }
 
   ngOnInit() {
     this.getCourses()
   }
   getCourses() {
-    this.api.getInstructorCourseList()
+    this.api.getInstructorCourseList(this.pr.id)
       .subscribe(data => {
-        console.log('recive data :: ' + data)
-        //debugger;
-        for (const iterator of (data as any)) {
-          this.courses.push({
-            id: iterator.Id,
-            name: iterator.Name
-          })
-        }
-      }
-      );
+        this.courses = data;
+      });
   }
-  getCourseExams(id){
+  getCourseExams(cid) {
     //debugger;
-    this.router.navigate([`instructor/1/${id}/exams`])
+    this.router.navigate([`instructor/${this.pr.id}/course/${cid}/exams`])
     ///instructor/1/course/(cid)/exams
     //instructor/1?courseId=1
   }

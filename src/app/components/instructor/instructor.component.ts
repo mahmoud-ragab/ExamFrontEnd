@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorageService } from 'src/app/core/local-storage.service';
 
 @Component({
   selector: 'app-instructor',
@@ -6,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./instructor.component.css']
 })
 export class InstructorComponent implements OnInit {
-
-  constructor() { }
+  userInfo;
+  constructor(private localStorageService: LocalStorageService) { 
+    this.userInfo = JSON.parse(localStorageService.getItem('UserInfo'));
+  }
 
   ngOnInit() {
   }
