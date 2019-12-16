@@ -28,8 +28,13 @@ import { SavedexamsComponent } from './savedexams/savedexams.component'
 import { ExamservicesService } from './examservices.service';
 import { LookupService } from './core/lookup.service';
 import { AuthGuard } from './core/guards/auth.guard';
+import { SolveExamComponent } from './solve-exam/solve-exam.component';
+import { SolveExamService } from './solve-exam.service';
 import { GenerateExamComponent } from './generate-exam/generate-exam.component';
-import {GenerateExamServiceService} from './core/generate-exam-service.service';
+import { GenerateExamServiceService } from './core/generate-exam-service.service';
+import { ApiService } from './api/api.service';
+
+
 const routes = [
   { path: 'instructor/:id/course/:c_id/exam/:e_id/student/:s_id/modelanswer', component: StudentmodelanswerComponent },
   { path: 'instructor/:id/course/:c_id/exams', component: ListofexamsComponent },
@@ -40,9 +45,9 @@ const routes = [
   { path: 'user/sign-in', component: SignInComponent },
   { path: 'user/sign-up', component: SignUpComponent },
   { path: 'user/logout', component: LogoutComponent },
-  { path: 'solved', component: SolvedExamsComponent , canActivate:[AuthGuard, StudentGuard]},
-  { path: 'notsolved', component: UnSolvedExamsComponent, canActivate:[AuthGuard, StudentGuard] },
-  { path: 'SolveExam/:id', component: SolvedExamsComponent },
+  { path: 'solved', component: SolvedExamsComponent, canActivate: [AuthGuard, StudentGuard] },
+  { path: 'notsolved', component: UnSolvedExamsComponent, canActivate: [AuthGuard, StudentGuard] },
+  { path: 'solveexam/:id', component: SolveExamComponent },
   { path: 'generate-exam', component: GenerateExamComponent },
   { path: '**', redirectTo: 'home' }]
 
@@ -50,6 +55,7 @@ const routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    SolveExamComponent,
     InstructorComponent,
     ListofexamsComponent,
     StudentmodelanswerComponent,
@@ -88,7 +94,9 @@ const routes = [
     },
     ExamservicesService,
     LookupService,
-    GenerateExamServiceService
+    SolveExamService,
+    GenerateExamServiceService,
+    ApiService
   ],
   bootstrap: [AppComponent]
 })

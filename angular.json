@@ -30,6 +30,7 @@
               "src/customStyles/plugins/chartist/css/chartist.min.css",
               "src/customStyles/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css",
               "src/customStyles/css/style.css"
+              
             ],
             "scripts": [     
               "node_modules/jquery/dist/jquery.js",         
