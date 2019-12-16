@@ -91,7 +91,7 @@
                                                                     <td>{{item.Course}}</td>
                                                                 
     
-                                                                    <td> <button type="button" (click)="GOToExam(item.ExamID)" [routerLink]="['/SolveExam',item.ExamID]" class="btn btn-success">Solve</button>  </td>
+                                                                    <td> <a type="button" [routerLink]="['/SolveExam', item.ExamID]" class="btn btn-success">Solve</a>  </td>
                                                                    
                                                                    <!--  <td> <button type="button" class="btn btn-warning">Save</button>  </td> -->
                                                                 </tr>

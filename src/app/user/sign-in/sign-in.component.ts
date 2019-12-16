@@ -51,7 +51,7 @@ export class SignInComponent implements OnInit {
           }));
           this.localStorageService.setToken(response['Token']);
           if (response['Type'] == 1)
-            this.router.navigate(['/home']);
+            this.router.navigate(['/solved']);
           else if (response['Type'] == 2)
             this.router.navigate([`instructor/${response['Id']}`])
         } else {

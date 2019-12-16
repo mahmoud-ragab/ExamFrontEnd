@@ -11,12 +11,12 @@
         <div *ngIf="userType == 2">
             <li class="nav-label">Instructor</li>
             <li>
-                <a [routerLink]="['']" aria-expanded="false">
+                <a [routerLink]="['/generate-exam']" aria-expanded="false">
                     <i class="icon-grid"></i><span class="nav-text">Generate Exam</span>
                 </a>
             </li>
             <li>
-                <a [routerLink]="['Instructor/:id/courses']" aria-expanded="false">
+                <a [routerLink]="['instructor/', userId, 'courses']" aria-expanded="false">
                     <i class="icon-grid"></i><span class="nav-text">List of Courses</span>
                 </a>
             </li>

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { LocalStorageService } from '../local-storage.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,7 +11,11 @@ export class SidebarComponent implements OnInit {
   @Input() isLoggedIn: boolean;
   @Input() userType: number;
 
-  constructor() { }
+  userId;
+
+  constructor(private localStorageService: LocalStorageService) {
+    this.userId = JSON.parse(localStorageService.getItem('UserInfo')).Id;
+   }
 
   ngOnInit() {
   }
