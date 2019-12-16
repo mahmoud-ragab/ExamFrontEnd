@@ -24,13 +24,13 @@
                                 <div class="col-lg-6">
                                     <select class="form-control" (change)="fitchCourse($event.target.value)">
                                         <option>Select Course</option>
-                                        <option value="1">HTML</option>
+                                        <option *ngFor="let c of coursesOfInstructor"  value="{{c.Id}}">{{c.Name}}</option>
                                     </select>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <input type="number" name="confirmPassword" class="form-control" disabled
-                                            value="1" required="">
+                                            value="{{intructorID}}" required="">
                                     </div>
                                 </div>
                             </div>

@@ -20,11 +20,11 @@ export class GenerateExamServiceService {
     return (error: any): Observable<T> => {
       console.error(error);
       this.log(`${operation} failed: ${error.message}`);
-  
+
       return of(result as T);
     };
   }
-  
+
   private log(message: string) {
     console.log(message);
   }
@@ -33,7 +33,12 @@ export class GenerateExamServiceService {
 
     return this.http.post<{}>(this.apiUrl, examPrams, this.httpOptions)
       .pipe(
-        catchError(this.handleError('addSmartphone',examPrams))
+        catchError(this.handleError('addSmartphone', examPrams))
       );
+  }
+
+  getCoursesOfIntructor(id: Number) {
+    var apiUrl = "https://localhost:44354/api/Instructor/"+id+"/courses";
+    return this.http.get(apiUrl);
   }
 }

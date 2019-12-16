@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {GenerateExamServiceService} from '../core/generate-exam-service.service'; 
+import { GenerateExamServiceService } from '../core/generate-exam-service.service';
 import { LocalStorageService } from '../core/local-storage.service';
 
 @Component({
@@ -9,45 +9,56 @@ import { LocalStorageService } from '../core/local-storage.service';
 })
 export class GenerateExamComponent implements OnInit {
 
-  questionsReturned  : any = []
-  numberOfMcq : number;
-  numberOfTrueOrFalse : number;
-  courseID : number;
+  coursesOfInstructor: any = [];
+  questionsReturned: any = [];
+  numberOfMcq: number;
+  numberOfTrueOrFalse: number;
+  courseID: number;
+  intructorID: Number = 1;
   constructor(private api: GenerateExamServiceService,
     private localStorageService: LocalStorageService) { }
 
   ngOnInit() {
-    this.addExam({
-      "courseID": "1",
-      "numberOfMCQ":  "6",
-      "numberOfTRUE_FALSE": "4",
-      "InstructorID" :  "1"
+    /**
+     * 
+     * CODE TO GET INSTRUCTOR ID
+     * 
+     */
+
+    this.api.getCoursesOfIntructor(this.intructorID).toPromise().then(res => {
+      this.coursesOfInstructor = res;
+    }).catch(err => {
+      console.log(err);
     })
-    let userInfo = JSON.parse(this.localStorageService.getItem('UserInfo'));
-    let userId = userInfo.Id;
-    console.log(userInfo);
   }
 
-  fitchCourse(courseID : any){
+  fitchCourse(courseID: any) {
     this.courseID = courseID;
   }
-  submitData(){
+  submitData() {
 
-    console.log("data " , {
-      trueOrFale : this.numberOfTrueOrFalse,
-      MCQ : this.numberOfMcq,
-      courseID : this.courseID
+    console.log("data ", {
+      courseID: this.courseID,
+      MCQ: this.numberOfMcq,
+      trueOrFale: this.numberOfTrueOrFalse,
+      InstructorID: this.intructorID
     })
 
+    this.addExam({
+      courseID: this.courseID,
+      numberOfMCQ: this.numberOfMcq,
+      numberOfTRUE_FALSE: this.numberOfTrueOrFalse,
+      InstructorID: this.intructorID
+    })
   }
 
-  addExam(postdata : any){
+  addExam(postdata: any) {
     this.api
-    .addExam(postdata).toPromise().then(res=>{
-      console.log("qeustions",res);
-      this.questionsReturned = res;
-    }).catch(err=>{
-      console.log("error" , err);
-    })
+      .addExam(postdata).toPromise().then(res => {
+        console.log("qeustions", res);
+        this.questionsReturned = res;
+      }).catch(err => {
+        console.log("error", err);
+      })
   }
 }
