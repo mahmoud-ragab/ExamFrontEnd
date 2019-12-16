@@ -14,16 +14,12 @@ export class GenerateExamComponent implements OnInit {
   numberOfMcq: number;
   numberOfTrueOrFalse: number;
   courseID: number;
-  intructorID: Number = 1;
+  intructorID: Number;
   constructor(private api: GenerateExamServiceService,
     private localStorageService: LocalStorageService) { }
 
   ngOnInit() {
-    /**
-     * 
-     * CODE TO GET INSTRUCTOR ID
-     * 
-     */
+    this.intructorID = JSON.parse(this.localStorageService.getItem('UserInfo')).Id;
 
     this.api.getCoursesOfIntructor(this.intructorID).toPromise().then(res => {
       this.coursesOfInstructor = res;
