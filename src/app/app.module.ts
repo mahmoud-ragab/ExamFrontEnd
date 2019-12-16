@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './core/header/header.component';
@@ -19,20 +18,29 @@ import { TokenInterceptor } from './core/auth.intercceptor';
 import { InstuctorGuard } from './core/guards/instuctor.guard';
 import { StudentGuard } from './core/guards/student.guard';
 import { InstructorComponent } from './components/instructor/instructor.component';
+import { ListofcoursesComponent } from './components/instructor/listofcourses/listofcourses.component';
+import { ListofexamsComponent } from './components/instructor/listofexams/listofexams.component';
+import { StudentmodelanswerComponent } from './components/instructor/studentmodelanswer/studentmodelanswer.component';
 
 const routes = [
-  {path:'instructor/:id',component:InstructorComponent},
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'instructor/:id/:c_id/:s_id/:e_id/modelanswer', component: StudentmodelanswerComponent },
+  { path: 'instructor/:id/:c_id/exams', component: ListofexamsComponent },
+  { path: 'instructor/:id/courses', component: ListofcoursesComponent },
+  { path: 'instructor/:id', component: InstructorComponent },
   { path: 'home', component: HomeComponent },
   { path: 'user/sign-in', component: SignInComponent },
   { path: 'user/sign-up', component: SignUpComponent },
   { path: 'user/logout', component: LogoutComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' }]
 
 @NgModule({
   declarations: [
     AppComponent,
     InstructorComponent,
+    ListofexamsComponent,
+    StudentmodelanswerComponent,
+    ListofcoursesComponent,
     HeaderComponent,
     SidebarComponent,
     FooterComponent,
