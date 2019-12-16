@@ -1,27 +1,37 @@
-<div class="col-lg-12">
+<div class="container-fluid row center">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Exam List</h4>
-            <p class="text-muted"><code></code>
-            </p>
-            <div id="accordion-three" class="accordion">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseOne4"
-                            aria-expanded="false" aria-controls="collapseOne4">
-                            <i class="fa" aria-hidden="true"></i>
-                            Exam #1</h5>
-                    </div>
-                    <div id="collapseOne4" class="collapse" data-parent="#accordion-three" style>
-                        <div class="card-body">
-
-                            <h4 style="display: inline-block;">Student Name</h4>
-                            <button type="button" class="btn mb-1 btn-primary" style="float: right;">View Model Answer</button>
-                        </div>
+            <div class="media align-items-center mb-4">
+                <img class="mr-3"  width="80" height="80" alt="">
+                <div class="media-body">
+                    <h3 class="mb-0">{{userInfo.UserName}}</h3>
+                    <p class="text-muted mb-0">Egypt</p>
+                </div>
+            </div>
+            
+            <div class="row mb-5">
+                <div class="col">
+                    <div class="card card-profile text-center">
+                        <span class="mb-1 text-primary"><i class="icon-graduation"></i></span>
+                        <h3 class="mb-0">263</h3>
+                        <p class="text-muted px-4">Student</p>
                     </div>
                 </div>
-                
+                <div class="col">
+                    <div class="card card-profile text-center">
+                        <span class="mb-1 text-warning"><i class="icon-notebook"></i></span>
+                        <h3 class="mb-0">10</h3>
+                        <p class="text-muted">Course</p>
+                    </div>
+                </div>
             </div>
+
+            <h4>About Me</h4>
+            <p class="text-muted">Hi, I'm Ayoub, has been the industry standard dummy text ever since the 1500s.</p>
+            <ul class="card-profile__info">
+                <li class="mb-1"><strong class="text-dark mr-4">Mobile</strong> <span>01793931609</span></li>
+                <li><strong class="text-dark mr-4">Email</strong> <span>{{userInfo.Email}}</span></li>
+            </ul>
         </div>
-    </div>
+    </div>  
 </div>

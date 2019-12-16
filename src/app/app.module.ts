@@ -19,6 +19,9 @@ import { TokenInterceptor } from './core/auth.intercceptor';
 import { InstuctorGuard } from './core/guards/instuctor.guard';
 import { StudentGuard } from './core/guards/student.guard';
 import { InstructorComponent } from './components/instructor/instructor.component';
+import { ListofcoursesComponent } from './components/instructor/listofcourses/listofcourses.component';
+import { ListofexamsComponent } from './components/instructor/listofexams/listofexams.component';
+import { StudentmodelanswerComponent } from './components/instructor/studentmodelanswer/studentmodelanswer.component';
 import { SolvedExamsComponent } from './solved-exams/solved-exams.component';
 import { UnSolvedExamsComponent } from './un-solved-exams/un-solved-exams.component';
 import { SavedexamsComponent } from './savedexams/savedexams.component'
@@ -27,9 +30,14 @@ import { LookupService } from './core/lookup.service';
 import { AuthGuard } from './core/guards/auth.guard';
 import { SolveExamComponent } from './solve-exam/solve-exam.component';
 import { SolveExamService } from './solve-exam.service';
- 
+import { GenerateExamComponent } from './generate-exam/generate-exam.component';
+import {GenerateExamServiceService} from './core/generate-exam-service.service';
+
 
 const routes = [
+  { path: 'instructor/:id/course/:c_id/exam/:e_id/student/:s_id/modelanswer', component: StudentmodelanswerComponent },
+  { path: 'instructor/:id/course/:c_id/exams', component: ListofexamsComponent },
+  { path: 'instructor/:id/courses', component: ListofcoursesComponent },
   { path: 'instructor/:id', component: InstructorComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -39,6 +47,7 @@ const routes = [
   { path: 'solved', component: SolvedExamsComponent , canActivate:[AuthGuard, StudentGuard]},
   { path: 'notsolved', component: UnSolvedExamsComponent, canActivate:[AuthGuard, StudentGuard] },
  { path: 'solveexam/:id', component: SolveExamComponent},
+  { path: 'generate-exam', component: GenerateExamComponent },
   { path: '**', redirectTo: 'home' }]
 
 
@@ -47,17 +56,21 @@ const routes = [
     AppComponent,
     SolveExamComponent,
     InstructorComponent,
+    ListofexamsComponent,
+    StudentmodelanswerComponent,
+    ListofcoursesComponent,
     HeaderComponent,
     SidebarComponent,
     FooterComponent,
     SignInComponent,
     SignUpComponent,
     HomeComponent,
-    LogoutComponent,    
+    LogoutComponent,
     SolvedExamsComponent,
     UnSolvedExamsComponent,
-    SavedexamsComponent
-
+    SavedexamsComponent,
+    SavedexamsComponent,
+    GenerateExamComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +93,8 @@ const routes = [
     },
     ExamservicesService,
     LookupService,
-    SolveExamService
+    SolveExamService,
+    GenerateExamServiceService
   ],
   bootstrap: [AppComponent]
 })

@@ -80,7 +80,10 @@ export class SignUpComponent implements OnInit {
             DepartmentId: this.department.value
           }));
           this.localStorageService.setToken(response['Token']);
+          if(response['Type'] == 1)
           this.router.navigate(['/home']);
+          else if(response['Type'] == 2)
+          this.router.navigate(['/instructor', response['Id']])
         })
     }
     this.isSubmitted = true;
